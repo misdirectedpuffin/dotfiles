@@ -1,0 +1,14 @@
+#!/bin/bash
+# fuzzy remove docker images
+fri() {
+    local images=(
+        docker
+        images
+    )
+
+    local sha=(
+        awk '{printf $3}'
+    )
+    local image=$($images | fzf | $sha)
+    docker rmi -f $image
+}

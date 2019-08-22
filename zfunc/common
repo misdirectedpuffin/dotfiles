@@ -1,0 +1,13 @@
+#!/bin/bash
+
+git_log_no_graph() {
+    git log \
+    --color=always \
+    --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" \
+    "$@"
+
+}
+
+
+local _git_log_line_to_hash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
+local _view_git_log_line="$_git_log_line_to_hash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"

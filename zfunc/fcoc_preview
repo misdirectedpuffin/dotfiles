@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source ~/.zfunc/common
+# fcoc_preview - checkout git commit with previews
+fcoc_preview() {
+  local commit
+  commit=$( git_log_no_graph |
+    fzf --no-sort --reverse --tiebreak=index --no-multi \
+        --ansi --preview $_view_git_log_line ) &&
+  git checkout $(echo "$commit" | sed "s/ .*//")
+}

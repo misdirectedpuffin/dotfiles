@@ -1,0 +1,30 @@
+#!/bin/bash
+# Not working
+local _git_log_line_to_hash=$(echo {} | grep -o '[a-f0-9]\{7\}' | head -1)
+local _view_git_log_line=$($_git_log_line_to_hash | xargs -I % sh -c 'git show --color=always %' | diff-so-fancy)
+
+# fshow_preview - git commit browser with previews
+fshowp() {
+    local gl=(
+        git log
+        --color=always
+        --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an"
+        "$@"
+    )
+
+    local fzf=(
+        fzf
+        --no-sort
+        --reverse
+        --tiebreak=index
+        --no-multi
+        --ansi
+        --preview $_view_git_log_line
+        --header "enter to view, alt-y to copy hash"
+        --bind "enter:execute:$_view_git_log_line | less -R"
+        --bind "alt-y:execute:$_git_log_line_to_hash | xclip"
+    )
+
+    $gl | $fzf
+}
+

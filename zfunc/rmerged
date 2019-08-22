@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Remove local branches already merged to master.
+rmerged() {
+    git branch --merged master | grep -v '^\*' | xargs -n 1 git branch -d
+}

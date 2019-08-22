@@ -1,0 +1,13 @@
+#!/bin/bash
+#fcoc - checkout git commit
+fcoc() {
+  local commits commit
+  commits=$(
+    git log \
+    --pretty=format:"%h %<(52,trunc)%s %<(12,trunc)%cr%<(25,trunc) %ci  %<(16,trunc)%an" \
+    --abbrev-commit \
+    --reverse \
+  ) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+  git checkout $(echo "$commit" | sed "s/ .*//")
+}

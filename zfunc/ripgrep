@@ -1,0 +1,7 @@
+#  do stuff
+ripgrep() {
+    echo 'go waway'
+    # local out
+    # out = "$(ag --nobreak --nonumbers --noheading .)"
+    # print -l $out
+}
