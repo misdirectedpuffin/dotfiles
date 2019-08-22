@@ -1,16 +1,17 @@
 # For a detailed description on the different options and how to configure them,
 # refer to the user guide: https://github.com/talal/bonclay/blob/master/doc/guide.md
 backup:
-  overwrite: true 
+  overwrite: true
 
 restore:
   overwrite: true
-  
+
 sync:
   clean: true
   overwrite: true
 
 spec:
+  ~/.bootstrap/configure.sh: bootstrap/configure.sh
   ~/.zfunc: zfunc
   ~/.tmux.conf: tmux/.tmux.conf
   ~/.zshrc: zsh/.zshrc
