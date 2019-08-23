@@ -15,6 +15,8 @@ brew install drone
 
 echo "Installing java..."
 brew cask install adoptopenjdk
+echo "Installing virtualbox..."
+brew cask install virtualbox
 
 echo "Installing packages..."
 brew install ack \
@@ -62,7 +64,6 @@ brew install ack \
     tmux \
     tree \
     vim \
-    virtualbox \
     watchman \
     zsh \
     zsh-completions
