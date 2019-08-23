@@ -82,14 +82,6 @@ git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugi
 git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
-# Pure power install
-echo ''
-echo "Now installing Pure Power terminal theme..."
-echo ''
-cd && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/master/.purepower
-echo 'source ~/.purepower' >>! ~/.zshrc
-git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-
 # vimrc vundle install
 echo ''
 echo "Now installing vundle..."
@@ -105,6 +97,14 @@ cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 echo 'Syncing dotfiles with bonclay...'
 bonclay sync bonclay.conf.yaml
 echo "Successfully configured your environment with dotfiles..."
+
+# Pure power install
+echo ''
+echo "Now installing Pure Power terminal theme..."
+echo ''
+cd && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/master/.purepower
+echo 'source ~/.purepower' >>! ~/.zshrc
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH/themes/powerlevel10k
 
 echo 'Installing Vundle plugins...'
 vim -c 'PluginInstall' -c 'qa!'
