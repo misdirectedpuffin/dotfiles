@@ -3,9 +3,6 @@
 # Install brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Python packages
-pip install poetry virtualenv virtualenvwrapper
-
 echo "Updating package lists..."
 brew update
 
@@ -70,6 +67,9 @@ brew install ack \
     zsh \
     zsh-completions
 
+# Python packages
+pip install poetry virtualenv virtualenvwrapper
+
 
 # oh-my-zsh install
 echo ''
@@ -91,7 +91,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-sy
 echo ''
 echo "Now installing Pure Power terminal theme..."
 echo ''
-curl https://raw.githubusercontent.com/romkatv/dotfiles-public/2d27deefd928175b80d681fc06eb2791848591fd/.purepower ~/.purepower
+curl https://raw.githubusercontent.com/romkatv/dotfiles-public/2d27deefd928175b80d681fc06eb2791848591fd/.purepower -o ~/.purepower
 cd && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/master/.purepower
 echo 'source ~/.purepower' >>! ~/.zshrc
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
