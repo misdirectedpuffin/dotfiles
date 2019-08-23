@@ -27,11 +27,9 @@ brew install ack \
     ctags \
     ctop \
     ffmpeg \
-    flac \
     fzf \
     gcc \
     gdbm \
-    gettext \
     git \
     bash-completion \
     glib \
@@ -44,8 +42,6 @@ brew install ack \
     kubectx \
     kubernetes-cli \
     kubernetes-helm \
-    libevent \
-    libffi \
     libgpg-error \
     mitmproxy \
     ncurses \
@@ -92,7 +88,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-sy
 echo ''
 echo "Now installing Pure Power terminal theme..."
 echo ''
-curl https://raw.githubusercontent.com/romkatv/dotfiles-public/2d27deefd928175b80d681fc06eb2791848591fd/.purepower -o ~/.purepower
 cd && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/master/.purepower
 echo 'source ~/.purepower' >>! ~/.zshrc
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
@@ -113,13 +108,6 @@ echo 'Syncing dotfiles with bonclay...'
 bonclay sync bonclay.conf.yaml
 echo "Successfully configured your environment with dotfiles..."
 
-echo "Now setting default shell..."
-chsh -s $(which zsh); exit 0
-if [[ $? -eq 0 ]] then
-    echo "Successfully set your default shell to zsh..."
-else
-    echo "Default shell not set successfully..." >&2
-fi
 
 
 echo 'Installing Vundle plugins...'
@@ -134,4 +122,11 @@ echo "Curling Sublime text..."
 curl https://download.sublimetext.com/Sublime%20Text%20Build%203207.dmg -o sublime.dmg
 echo "You can now install Docker and SublimeText from the .dmg files in your cwd."
 echo '	Badass macOS terminal installed!'
+echo "Now setting default shell..."
+chsh -s $(which zsh); exit 0
+if [[ $? -eq 0 ]] then
+    echo "Successfully set your default shell to zsh..."
+else
+    echo "Default shell not set successfully..." >&2
+fi
 . ~/.zshrc
