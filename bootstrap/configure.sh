@@ -74,17 +74,17 @@ brew install ack \
 echo ''
 echo "Now installing oh-my-zsh..."
 echo ''
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
 
 # oh-my-zsh plugin install
 mkdir $ZSH/plugins/poetry
 poetry completions zsh > $ZSH/plugins/poetry/_poetry
-# echo ''
-# echo "Now installing oh-my-zsh plugins..."
-# echo ''
-# git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
-# git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
+echo ''
+echo "Now installing oh-my-zsh plugins..."
+echo ''
+git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
 # powerlevel9k install
 echo ''
@@ -120,4 +120,13 @@ fi
 echo 'Installing Vundle plugins...'
 vim +PluginInstall +qall
 . ~/.zshrc
+
+echo "Curling terminal theme"
+curl https://raw.githubusercontent.com/lysyi3m/macos-terminal-themes/master/schemes/Cobalt2.terminal -o ~/Cobalt2.terminal
+
+echo "Curling Docker for mac..."
+curl https://download.docker.com/mac/stable/Docker.dmg -o Docker.dmg
+echo "Curling Sublime text..."
+curl https://download.sublimetext.com/Sublime%20Text%20Build%203207.dmg -o sublime.dmg
+echo "You can now install Docker and SublimeText from the .dmg files in your cwd."
 echo '	Badass macOS terminal installed!'
