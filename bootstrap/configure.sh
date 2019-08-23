@@ -65,6 +65,7 @@ brew install ack \
     tmux \
     tree \
     vim \
+    virtualbox \
     watchman \
     zsh \
     zsh-completions
@@ -86,11 +87,14 @@ git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugi
 git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
-# powerlevel9k install
+# Pure power install
 echo ''
-echo "Now installing powerlevel9k..."
+echo "Now installing Pure Power terminal theme..."
 echo ''
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+curl https://raw.githubusercontent.com/romkatv/dotfiles-public/2d27deefd928175b80d681fc06eb2791848591fd/.purepower ~/.purepower
+cd && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/master/.purepower
+echo 'source ~/.purepower' >>! ~/.zshrc
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
 # vimrc vundle install
 echo ''
@@ -119,7 +123,6 @@ fi
 
 echo 'Installing Vundle plugins...'
 vim +PluginInstall +qall
-. ~/.zshrc
 
 echo "Curling terminal theme"
 curl https://raw.githubusercontent.com/lysyi3m/macos-terminal-themes/master/schemes/Cobalt2.terminal -o ~/Cobalt2.terminal
@@ -130,3 +133,4 @@ echo "Curling Sublime text..."
 curl https://download.sublimetext.com/Sublime%20Text%20Build%203207.dmg -o sublime.dmg
 echo "You can now install Docker and SublimeText from the .dmg files in your cwd."
 echo '	Badass macOS terminal installed!'
+. ~/.zshrc
