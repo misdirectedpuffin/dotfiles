@@ -79,7 +79,6 @@ bonclay sync bonclay.conf.yaml
 echo "Successfully configured your environment with dotfiles..."
 
 
-
 # oh-my-zsh install
 echo ''
 echo "Now installing oh-my-zsh..."
@@ -110,6 +109,7 @@ echo "Now installing Pure Power terminal theme..."
 echo ''
 cd && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/master/.purepower
 echo 'source ~/.purepower' >>! ~/.zshrc
+mkdir -p $ZSH/themes/powerlevel10k
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH/themes/powerlevel10k
 
 echo 'Installing Vundle plugins...'
