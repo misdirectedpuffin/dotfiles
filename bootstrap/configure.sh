@@ -66,7 +66,21 @@ chsh -s $(which zsh);
 # Put python in path
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 echo "Installing virtualenv tools for Python..."
-pip install virtualenv virtualenvwrapper powerline-status poetry
+pip install virtualenv virtualenvwrapper powerline-status
+
+# oh-my-zsh install
+echo ''
+echo "Now installing oh-my-zsh..."
+echo ''
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
+
+# oh-my-zsh plugin install
+echo ''
+echo "Now installing oh-my-zsh plugins..."
+echo ''
+git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
 # Pull down personal dotfiles
 echo ''
@@ -78,26 +92,6 @@ echo 'Syncing dotfiles with bonclay...'
 bonclay sync bonclay.conf.yaml
 echo "Successfully configured your environment with dotfiles..."
 
-
-# oh-my-zsh install
-echo ''
-echo "Now installing oh-my-zsh..."
-echo ''
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
-
-
-# oh-my-zsh plugin install
-echo ''
-echo "zsh directory: $ZSH"
-echo "Making poetry plugin directory..."
-sudo mkdir -p $ZSH/plugins/poetry
-poetry completions zsh > $ZSH/plugins/poetry/_poetry
-echo ''
-echo "Now installing oh-my-zsh plugins..."
-echo ''
-git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
-git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
 # vimrc vundle install
 echo ''

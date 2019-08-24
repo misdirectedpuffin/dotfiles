@@ -72,7 +72,6 @@ plugins=(
     git
     tmux
     bundler
-    poetry
 )
 
 source $ZSH/oh-my-zsh.sh
