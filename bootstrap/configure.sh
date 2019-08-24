@@ -77,9 +77,6 @@ cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 echo 'Syncing dotfiles with bonclay...'
 bonclay sync bonclay.conf.yaml
 echo "Successfully configured your environment with dotfiles..."
-echo ''
-echo "sourcing .zshrc..."
-. ~/.zshrc
 
 
 
