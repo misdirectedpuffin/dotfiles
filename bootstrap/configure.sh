@@ -117,10 +117,6 @@ curl https://download.docker.com/mac/stable/Docker.dmg -o Docker.dmg
 echo "Curling Sublime text..."
 curl https://download.sublimetext.com/Sublime%20Text%20Build%203207.dmg -o sublime.dmg
 
-echo "Installing virtualbox..."
-sudo chown -R $(whoami) /usr/local/lib/pkgconfig
-brew cask install virtualbox
-
 echo "You can now install Docker and SublimeText from the .dmg files in your cwd."
 echo "Now setting default shell..."
 chsh -s $(which zsh); exit 0
