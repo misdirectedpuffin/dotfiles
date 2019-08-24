@@ -60,7 +60,7 @@ brew install ack \
     zsh-completions
 
 echo "Now setting default shell..."
-echo $(which zsh) | tee -a /etc/shells
+echo $(which zsh) | sudo tee -a /etc/shells
 chsh -s $(which zsh);
 
 # Put python in path
