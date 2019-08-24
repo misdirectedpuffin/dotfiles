@@ -66,7 +66,7 @@ chsh -s $(which zsh);
 # Put python in path
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 echo "Installing virtualenv tools for Python..."
-pip virtualenv virtualenvwrapper powerline-status poetry
+pip install virtualenv virtualenvwrapper powerline-status poetry
 
 # Pull down personal dotfiles
 echo ''
@@ -87,7 +87,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 
 # oh-my-zsh plugin install
-mkdir -p $ZSH/plugins/poetry
+echo ''
+echo "zsh directory: $ZSH"
+echo "Making poetry plugin directory..."
+sudo mkdir -p $ZSH/plugins/poetry
 poetry completions zsh > $ZSH/plugins/poetry/_poetry
 echo ''
 echo "Now installing oh-my-zsh plugins..."
@@ -102,6 +105,8 @@ echo "Now installing vundle..."
 echo ''
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+echo 'Installing Vundle plugins...'
+vim -c 'PluginInstall' -c 'qa!'
 
 # Pure power install
 echo ''
@@ -112,8 +117,6 @@ echo 'source ~/.purepower' >>! ~/.zshrc
 mkdir -p $ZSH/themes/powerlevel10k
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH/themes/powerlevel10k
 
-echo 'Installing Vundle plugins...'
-vim -c 'PluginInstall' -c 'qa!'
 
 echo "Curling terminal theme"
 curl https://raw.githubusercontent.com/lysyi3m/macos-terminal-themes/master/schemes/Cobalt2.terminal -o ~/Cobalt2.terminal
