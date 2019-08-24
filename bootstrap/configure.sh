@@ -16,16 +16,10 @@ brew install drone
 echo "Installing java..."
 brew cask install adoptopenjdk
 
-echo "Installing AWS cli..."
-brew install awscli
-
-# Python has been installed as a dependency of awscli.
-echo "Installing virtualenv tools for Python..."
-pip virtualenv virtualenvwrapper powerline-status
-
 
 echo "Installing packages..."
 brew install ack \
+    awscli \
     autoconf \
     cfssl \
     cloc \
@@ -33,7 +27,6 @@ brew install ack \
     ctop \
     fzf \
     gcc \
-    gdbm \
     git \
     bash-completion \
     glib \
@@ -51,14 +44,12 @@ brew install ack \
     ncurses \
     nmap \
     node \
-    openssl \
     pyenv \
     pyenv-virtualenv \
     pyenv-virtualenvwrapper \
     python \
     readline \
     speedtest-cli \
-    sqlite \
     stern \
     syncthing \
     tmux \
@@ -69,12 +60,28 @@ brew install ack \
     zsh-completions
 
 echo "Now setting default shell..."
-chsh -s $(which zsh); exit 0
-if [[ $? -eq 0 ]] then
-    echo "Successfully set your default shell to zsh..."
-else
-    echo "Default shell not set successfully..." >&2
-fi
+echo $(which zsh) | tee -a /etc/shells
+chsh -s $(which zsh);
+
+# Put python in path
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+echo "Installing virtualenv tools for Python..."
+pip virtualenv virtualenvwrapper powerline-status poetry
+
+# Pull down personal dotfiles
+echo ''
+echo "Now pulling down your dotfiles..."
+git clone https://github.com/$USER/dotfiles.git ~/.dotfiles
+echo ''
+cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
+echo 'Syncing dotfiles with bonclay...'
+bonclay sync bonclay.conf.yaml
+echo "Successfully configured your environment with dotfiles..."
+echo ''
+echo "sourcing .zshrc..."
+. ~/.zshrc
+
+
 
 # oh-my-zsh install
 echo ''
@@ -82,11 +89,9 @@ echo "Now installing oh-my-zsh..."
 echo ''
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
 
-# python poetry
-pip install poetry
 
 # oh-my-zsh plugin install
-mkdir $ZSH/plugins/poetry
+mkdir -p $ZSH/plugins/poetry
 poetry completions zsh > $ZSH/plugins/poetry/_poetry
 echo ''
 echo "Now installing oh-my-zsh plugins..."
@@ -101,15 +106,6 @@ echo "Now installing vundle..."
 echo ''
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-# Pull down personal dotfiles
-echo ''
-echo "Now pulling down your dotfiles..."
-git clone https://github.com/$USER/dotfiles.git ~/.dotfiles
-echo ''
-cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
-echo 'Syncing dotfiles with bonclay...'
-bonclay sync bonclay.conf.yaml
-echo "Successfully configured your environment with dotfiles..."
 
 # Pure power install
 echo ''
