@@ -16,15 +16,21 @@ brew install drone
 echo "Installing java..."
 brew cask install adoptopenjdk
 
+echo "Installing AWS cli..."
+brew install awscli
+
+# Python has been installed as a dependency of awscli.
+echo "Installing virtualenv tools for Python..."
+pip virtualenv virtualenvwrapper powerline-status
+
+
 echo "Installing packages..."
 brew install ack \
     autoconf \
-    awscli \
     cfssl \
     cloc \
     ctags \
     ctop \
-    ffmpeg \
     fzf \
     gcc \
     gdbm \
@@ -62,15 +68,15 @@ brew install ack \
     zsh \
     zsh-completions
 
-# Python packages
-pip install poetry virtualenv virtualenvwrapper powerline-status
-
 
 # oh-my-zsh install
 echo ''
 echo "Now installing oh-my-zsh..."
 echo ''
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
+
+# python poetry
+pip install poetry
 
 # oh-my-zsh plugin install
 mkdir $ZSH/plugins/poetry
@@ -112,12 +118,23 @@ vim -c 'PluginInstall' -c 'qa!'
 echo "Curling terminal theme"
 curl https://raw.githubusercontent.com/lysyi3m/macos-terminal-themes/master/schemes/Cobalt2.terminal -o ~/Cobalt2.terminal
 
-echo "Curling Docker for mac..."
-curl https://download.docker.com/mac/stable/Docker.dmg -o Docker.dmg
-echo "Curling Sublime text..."
-curl https://download.sublimetext.com/Sublime%20Text%20Build%203207.dmg -o sublime.dmg
+echo ''
+read -p "Do you want to download docker and sublime? y/n" -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    echo ''
+    echo "Curling Docker for mac..."
+    curl https://download.docker.com/mac/stable/Docker.dmg -o Docker.dmg
+    echo "Curling Sublime text..."
+    curl https://download.sublimetext.com/Sublime%20Text%20Build%203207.dmg -o sublime.dmg
 
-echo "You can now install Docker and SublimeText from the .dmg files in your cwd."
+    echo "You can now install Docker and SublimeText from the .dmg files in your cwd."
+else
+    echo ''
+    echo "Skipping dmg downloads..."
+fi
+
 echo "Now setting default shell..."
 chsh -s $(which zsh); exit 0
 if [[ $? -eq 0 ]] then
@@ -125,4 +142,3 @@ if [[ $? -eq 0 ]] then
 else
     echo "Default shell not set successfully..." >&2
 fi
-. ~/.zshrc
