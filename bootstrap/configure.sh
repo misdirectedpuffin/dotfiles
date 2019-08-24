@@ -9,9 +9,13 @@ brew update
 echo "Installing bonclay to manage dotfiles..."
 brew install talal/tap/bonclay
 
-echo "Installing drone cli"
+echo "Installing drone cli..."
 brew tap drone/drone
 brew install drone
+
+echo "Installing nerd fonts..."
+brew tap homebrew/cask-fonts
+brew cask install font-awesome-terminal-fonts
 
 echo "Installing java..."
 brew cask install adoptopenjdk
@@ -133,3 +137,4 @@ else
 fi
 echo ''
 echo "All set up...!"
+echo "You should also go to https://github.com/romkatv/powerlevel10k#recommended-meslo-nerd-font-patched-for-powerlevel10k and install the fonts."
