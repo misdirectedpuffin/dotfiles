@@ -112,8 +112,7 @@ echo "Now installing Pure Power terminal theme..."
 echo ''
 cd && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/master/.purepower
 echo 'source ~/.purepower' >>! ~/.zshrc
-mkdir -p $ZSH/themes/powerlevel10k
-git clone https://github.com/romkatv/powerlevel10k.git $ZSH/themes/powerlevel10k
+git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k
 
 
 echo "Curling terminal theme"
